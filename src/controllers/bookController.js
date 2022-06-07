@@ -1,4 +1,5 @@
 
+
 const BookModel = require("../models/bookModel.js")
 //Q.1
 const getBookData = async function (req, res) {
@@ -25,8 +26,12 @@ const getParticularBooks = async function (req, res) {
 }
 
 //Q.5
+// const getXINRBook = async function (req, res) {
+//     let allBook = await BookModel.find({$or:[{"prices":"₹100"},{"prices":"₹200"},{"prices":"₹500"}]})
+//     res.send({ msg: allBook })
+// }
 const getXINRBook = async function (req, res) {
-    let allBook = await BookModel.find({$or:[{"prices":"₹100"},{"prices":"₹200"},{"prices":"₹500"}]})
+    let allBook = await BookModel.find({ 'prices.indianPrice': { $in: ["₹100", "₹200", "₹500"] } })
     res.send({ msg: allBook })
 }
 
