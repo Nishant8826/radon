@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
 //Q.1
-const createUser = async function (abcd, xyz) {
-  let data = abcd.body;
+const createUser = async function (req, res) {
+  let data = req.body;
   let savedData = await userModel.create(data);
   // console.log(abcd.newAtribute);
-  xyz.send({ msg: savedData });
+  res.send({ msg: savedData });
 };
 
 //Q.2
@@ -73,13 +73,15 @@ const deleteUser = async function (req, res) {
     return res.send({msg:"No Such User! Try Again.."})
   }
   
-  let userDelete=await userModel.findByIdAndDelete({_id:userId});
+  let userDelete=await userModel.findOneAndUpdate({_id:userId},{"isDeleted":true});
   res.send({userDelete})
 
 };
+
 
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.deleteUser = deleteUser;
+
