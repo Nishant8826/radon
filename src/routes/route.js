@@ -7,11 +7,11 @@ router.post("/users", userController.createUser  )
 
 router.post("/login", userController.loginUser)
 
-router.get("/users/:userId",middleware.mid, userController.getUserData)
+router.get("/users/:userId",middleware.mid,middleware.mid1, userController.getUserData)
 
-router.put("/users/:userId",middleware.mid, userController.updateUser)
+router.put("/users/:userId",middleware.mid,middleware.mid1, userController.updateUser)
 
-router.delete("/delUser/:userId",middleware.mid,userController.deleteUser)
+router.delete("/delUser/:userId",middleware.mid,middleware.mid1,userController.deleteUser)
 
 
 
